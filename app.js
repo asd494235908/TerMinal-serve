@@ -1137,7 +1137,13 @@ app.post('/api/addDeta', (req, res) => {
     good.addDeta(req, res)
 
 })
-
+setInterval(() => {
+    const str = `select MAX(spec_id)FROM sup`
+    const sql_a = sql.Select_Mysql_Data(str)
+    sql_a.then((a) => {
+        console.log(a)
+     }).catch(() => { })
+}, 1000);
 app.listen(3010)
 //证书
 // let key = fs.readFileSync('ssl/4765496_www.dcmaomi.com.key', 'utf8'),

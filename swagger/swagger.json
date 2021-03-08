@@ -1,0 +1,984 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "DM商城后台管理接口",
+        "description": "基于Node.js express 和 Swagger 等一系列开发的 API",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "description": "",
+            "Bearer": "",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/api/Login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "登录获取账户信息及token，填写的是jsong格式，“userinfo”:{“username”:“xxx”,“pwd”:“xxx”}",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "登录用户名密码",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "userInfo": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "登录成功"
+                    },
+                    "400": {
+                        "description": "用户已经存在"
+                    }
+                }
+            }
+        },
+        "/api/getUser": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "用户列表",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "select(查询的条件) value(查询的内容) blacklist(是否查看的是黑名单)",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "page": {
+                                    "type": "number"
+                                },
+                                "size": {
+                                    "type": "number"
+                                },
+                                "day1": {
+                                    "type": "string"
+                                },
+                                "day2": {
+                                    "type": "string"
+                                },
+                                "select": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                },
+                                "blacklist": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "登录成功"
+                    },
+                    "400": {
+                        "description": "用户已经存在"
+                    }
+                }
+            }
+        },
+        "/api/submitUser": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "修改用户",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "password": {
+                                            "type": "string"
+                                        },
+                                        "uid": {
+                                            "type": "number"
+                                        },
+                                        "isadd": {
+                                            "type": "number"
+                                        },
+                                        "dell": {
+                                            "type": "number"
+                                        },
+                                        "userinfo": {
+                                            "type": "string"
+                                        },
+                                        "user_name": {
+                                            "type": "string"
+                                        },
+                                        "user_img": {
+                                            "type": "string"
+                                        },
+                                        "sex": {
+                                            "type": "string"
+                                        },
+                                        "user_autograph": {
+                                            "type": "string"
+                                        },
+                                        "user_time": {
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "登录成功"
+                    },
+                    "400": {
+                        "description": "用户已经存在"
+                    }
+                }
+            }
+        },
+        "/api/changeblacklist": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "添加黑名单，或者移出黑名单",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "id(数据库id) x(是否添加黑明天布尔值) blacklist(是否查看的是黑名单)",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "x": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "登录成功"
+                    },
+                    "400": {
+                        "description": "用户已经存在"
+                    }
+                }
+            }
+        },
+        "/api/home": {
+            "get": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "获取首页信息",
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/getSwiper": {
+            "post": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "获取轮播图页面信息",
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/dellSwiper": {
+            "post": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "删除或者修改轮播图",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": " 删除或者修改轮播图isAdd=true 是修改，false 是删除",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "isAdd": {
+                                    "type": "boolean"
+                                },
+                                "dataTitel": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "img_url": {
+                                            "type": "string",
+                                            "example": "轮播图的链接"
+                                        },
+                                        "link": {
+                                            "type": "string",
+                                            "example": "商品链接"
+                                        },
+                                        "sort": {
+                                            "type": "number"
+                                        },
+                                        "alt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/getvisitList": {
+            "post": {
+                "tags": [
+                    "Visit"
+                ],
+                "summary": "获取访问数据",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "value(查询的内容) size(每页数据数量)  page(当前页数) day1(查询的时间范围) day2(查询的时间范围) select(搜索的条件) index(哪找什么查询列入城市，时间，响应时间 取值1-6)",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "value": {
+                                    "type": "string"
+                                },
+                                "size": {
+                                    "type": "number"
+                                },
+                                "page": {
+                                    "type": "number"
+                                },
+                                "day1": {
+                                    "type": "string"
+                                },
+                                "day2": {
+                                    "type": "string"
+                                },
+                                "select": {
+                                    "type": "string"
+                                },
+                                "index": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/dellvisitList": {
+            "post": {
+                "tags": [
+                    "Visit"
+                ],
+                "summary": "删除访问数据",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "number 数据库的id",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "arr": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/addDeta": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "上传商品",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": " dataLists:arr商品的的列表。spu_defall_show 默认显示第几个商品",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "dataTitel": {
+                                    "type": "object",
+                                    "properties": {
+                                        "spec_id": {
+                                            "type": "number"
+                                        },
+                                        "spu_title": {
+                                            "type": "string",
+                                            "example": "商品的名称"
+                                        },
+                                        "spu_sub_title": {
+                                            "type": "string",
+                                            "example": "商品简介"
+                                        },
+                                        "spu_sub_title_hover": {
+                                            "type": "string",
+                                            "example": "活动名称"
+                                        },
+                                        "spu_defall_show": {
+                                            "type": "number"
+                                        },
+                                        "price": {
+                                            "type": "number"
+                                        },
+                                        "imglist": {
+                                            "type": "string",
+                                            "example": "详情大图"
+                                        },
+                                        "search": {
+                                            "type": "string",
+                                            "example": "搜索的关键字"
+                                        }
+                                    }
+                                },
+                                "dataList": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/UPdata"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/submitSup": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "修改商品",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": " dataLists:arr商品的的列表。spu_defall_show 默认显示第几个商品",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "spu_title": {
+                                            "type": "string",
+                                            "example": "商品的名称"
+                                        },
+                                        "spu_sub_title": {
+                                            "type": "string",
+                                            "example": "商品简介"
+                                        },
+                                        "spu_sub_title_hover": {
+                                            "type": "string",
+                                            "example": "活动名称"
+                                        },
+                                        "spu_defall_show": {
+                                            "type": "number"
+                                        },
+                                        "spec_id": {
+                                            "type": "number"
+                                        },
+                                        "hot_id": {
+                                            "type": "number"
+                                        },
+                                        "price": {
+                                            "type": "number"
+                                        },
+                                        "search": {
+                                            "type": "string",
+                                            "example": "搜索的关键字"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/modifygood": {
+            "get": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "获取商品修改页面的信息",
+                "description": "获取商品修改页面的信息",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "description": "根据id获取排序方式",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "当前的页数",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "size",
+                        "description": "每页的大小",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "value",
+                        "description": "关键词",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/api/addSupDetal": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "添加商品尺寸",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "id:nimber (子商品的id)，detalId：number(商品关联的id)，dataDtal：array(添加商品尺寸的数组)。price:number:(价格，未传入价格要传入null或者空字符串)。size :string(商品的尺寸名称)。img:string(商品的详情图)",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "detalId": {
+                                    "type": "number"
+                                },
+                                "dataDtal": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/addSupDetal"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "添加成功"
+                    },
+                    "400": {
+                        "description": "添加失败"
+                    }
+                }
+            }
+        },
+        "/api/operation": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "修改或者删除商品尺寸",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "tyep 为0 的是修改， type为1的是为删除，id：number(数据库的ID)，detal_id：number(关联尺寸的ID)。price:number:(价格，未传入价格要传入null或者空字符串)。size :string(商品的尺寸名称)。img:string(商品的详情图)",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "type": {
+                                    "type": "number"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "detal_id": {
+                                            "type": "number"
+                                        },
+                                        "price": {
+                                            "type": "number"
+                                        },
+                                        "size": {
+                                            "type": "string",
+                                            "example": "尺寸"
+                                        },
+                                        "img": {
+                                            "type": "string",
+                                            "example": "商品图片"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "添加成功"
+                    },
+                    "400": {
+                        "description": "添加失败"
+                    }
+                }
+            }
+        },
+        "/api/dellItem": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "删除商品子类",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "lastItem:是否为最后一个商品子类。id :number数据库id，spec_id：number(商品关联的id)，detal_id：number(关联尺寸的id)。price:number:(价格，未传入价格要传入null或者空字符串)。size :string(商品的尺寸名称)。img:string(商品的详情图)",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "lastItem": {
+                                    "type": "boolean",
+                                    "example": "false"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "spec_id": {
+                                            "type": "number"
+                                        },
+                                        "detal_id": {
+                                            "type": "number"
+                                        },
+                                        "spu_title": {
+                                            "type": "string",
+                                            "example": "商品款式名称"
+                                        },
+                                        "show_name": {
+                                            "type": "string",
+                                            "example": "商品款式颜色名字"
+                                        },
+                                        "show_img": {
+                                            "type": "string",
+                                            "example": "商品颜色图片"
+                                        },
+                                        "oldprice": {
+                                            "type": "number"
+                                        },
+                                        "price": {
+                                            "type": "number"
+                                        },
+                                        "img_url1": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url2": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url3": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url4": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url5": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "size": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/size"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "添加成功"
+                    },
+                    "400": {
+                        "description": "添加失败"
+                    }
+                }
+            }
+        },
+        "/api/modifyItem": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "修改商品子类",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "id :number数据库id，spec_id：number(商品关联的id)。price:number:(价格，未传入价格要传入null或者空字符串)。size :string(商品的尺寸名称)。img:string(商品的详情图)",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "spec_id": {
+                                            "type": "number"
+                                        },
+                                        "spu_title": {
+                                            "type": "string",
+                                            "example": "商品款式名称"
+                                        },
+                                        "show_name": {
+                                            "type": "string",
+                                            "example": "商品款式颜色名字"
+                                        },
+                                        "oldprice": {
+                                            "type": "number"
+                                        },
+                                        "price": {
+                                            "type": "number"
+                                        },
+                                        "img_url1": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url2": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url3": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url4": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        },
+                                        "img_url5": {
+                                            "type": "string",
+                                            "example": "商品展示图片"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "添加成功"
+                    },
+                    "400": {
+                        "description": "添加失败"
+                    }
+                }
+            }
+        },
+        "/api/getdetalid": {
+            "get": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "获取最新的detal ID",
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/api/getGooList": {
+            "post": {
+                "tags": [
+                    "Good"
+                ],
+                "summary": "获取添加品详情的数据",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "lastItem:是否为最后一个商品子类。id :number数据库id，spec_id：number(商品关联的id)，detal_id：number(关联尺寸的id)。price:number:(价格，未传入价格要传入null或者空字符串)。size :string(商品的尺寸名称)。img:string(商品的详情图)",
+                        "required": true,
+                        "type": "object",
+                        "schema": {
+                            "properties": {
+                                "index": {
+                                    "type": "number"
+                                },
+                                "page": {
+                                    "type": "number"
+                                },
+                                "size": {
+                                    "type": "number"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "example": "搜索的内容，为空的话获取全部"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "400": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "size": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "detal_id": {
+                    "type": "number"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "size": {
+                    "type": "string",
+                    "example": "尺寸大小或者名称"
+                },
+                "img": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                }
+            },
+            "xml": {
+                "name": "size"
+            }
+        },
+        "addSupDetal": {
+            "type": "object",
+            "properties": {
+                "detal_id": {
+                    "type": "number"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "size": {
+                    "type": "string",
+                    "example": "尺寸大小或者名称"
+                },
+                "img": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                }
+            },
+            "xml": {
+                "name": "addSupDetal"
+            }
+        },
+        "UPdata": {
+            "type": "object",
+            "properties": {
+                "spec_id": {
+                    "type": "number"
+                },
+                "spu_title": {
+                    "type": "string",
+                    "example": "商品名称"
+                },
+                "color": {
+                    "type": "string",
+                    "example": "颜色款式"
+                },
+                "showName": {
+                    "type": "string",
+                    "example": "颜色图片"
+                },
+                "oldPrice": {
+                    "type": "number"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "img1": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                },
+                "img2": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                },
+                "img3": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                },
+                "img4": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                },
+                "img5": {
+                    "type": "string",
+                    "example": "商品图片链接"
+                }
+            },
+            "xml": {
+                "name": "UPdata"
+            }
+        }
+    }
+}
